@@ -1,0 +1,34 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "runtime": {
+    "path": [
+      "lua/?.lua",
+      "lua/?/init.lua"
+    ],
+    "version": "LuaJIT"
+  },
+  "diagnostics": {
+    "globals": [
+      "vim"
+    ]
+  },
+  "workspace": {
+    "ignoreDir": [
+      ".nvim"
+    ],
+    "library": [
+      "~/AppData/Local/nvim-data/site/pack",
+      "~/scoop/apps/neovim/current/share/nvim/runtime/lua"
+    ]
+  },
+  "hint": {
+    "arrayIndex": "Auto",
+    "await": true,
+    "awaitPropagate": true,
+    "enable": true,
+    "paramName": "All",
+    "paramType": true,
+    "semicolon": "SameLine",
+    "setType": true
+  }
+}
