@@ -1,3 +1,4 @@
 vim.lsp.enable({
-    'vtsls'
+    'vtsls',
+    'biome'
 })
