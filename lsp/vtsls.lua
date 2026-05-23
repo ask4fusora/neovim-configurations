@@ -52,7 +52,12 @@ return {
         local deno_root_dir = vim.fs.root(bufnr, deno_root_markers)
         local node_root_dir = vim.fs.root(bufnr, { node_root_markers, { '.git' } })
 
-        if deno_root_dir and not node_root_dir or #deno_root_dir >= #node_root_dir then
+        if deno_root_dir == nil then
+            return on_dir(node_root_dir or vim.fn.getcwd())
+        end
+
+        if node_root_dir == nil or #deno_root_dir >= #node_root_dir then
+            -- `node` root not found but `deno` root found -> abort.
             -- `deno` root is closer than or equal to `node` root -> abort.
             return
         end
