@@ -1,4 +1,6 @@
 vim.lsp.enable({
     'vtsls',
-    'biome'
+    'biome',
+    'lua-language-server',
+    'json-language-server',
 })

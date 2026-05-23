@@ -35,31 +35,28 @@ return {
         'typescript',
         'typescriptreact',
     },
+    --[[
+    NOTE: We need `root_dir` function, because `deno` is troublesome.
+    We would not want to start `vtsls` if `deno`'s root is closer than or equal to `node`'s root.
+    --]]
     root_dir = function(bufnr, on_dir)
+        local deno_root_markers = { { 'deno.json', 'deno.jsonc' }, 'deno.lock' }
         local node_root_markers = {
-            '.git',
             'package-lock.json',
             'yarn.lock',
             'pnpm-lock.yaml',
             'bun.lockb',
-            'bun.lock'
+            'bun.lock',
         }
 
-        local deno_root = vim.fs.root(bufnr, { 'deno.json', 'deno.jsonc' })
-        local deno_lock_root = vim.fs.root(bufnr, { 'deno.lock' })
-        local node_root = vim.fs.root(bufnr, node_root_markers)
+        local deno_root_dir = vim.fs.root(bufnr, deno_root_markers)
+        local node_root_dir = vim.fs.root(bufnr, { node_root_markers, { '.git' } })
 
-        if deno_lock_root and (not node_root or #deno_lock_root > #node_root) then
-            -- deno lock is closer than node lock -> abort
+        if deno_root_dir and not node_root_dir or #deno_root_dir >= #node_root_dir then
+            -- `deno` root is closer than or equal to `node` root -> abort.
             return
         end
 
-        if deno_root and (not node_root or #deno_root >= #node_root) then
-            -- deno config is closer than or equal to node lock -> abort
-            return
-        end
-
-        -- project is standard TS, not deno
-        on_dir(node_root or vim.fn.getcwd())
+        on_dir(node_root_dir or vim.fn.getcwd())
     end,
 }

@@ -21,6 +21,8 @@
       "~/scoop/apps/neovim/current/share/nvim/runtime/lua"
     ]
   },
+	"codeLens.enable": true,
+	"hint.enable": true,
   "hint": {
     "arrayIndex": "Auto",
     "await": true,
