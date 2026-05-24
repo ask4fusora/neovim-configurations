@@ -6,9 +6,9 @@ require('mini.notify').setup({
                 math.floor(notification.ts_update)
             )
 
-            return (' [%s] %s %s '):format(
-                notification.level,
+            return (' %s | %s | %s '):format(
                 time_string,
+                notification.level,
                 notification.msg
             )
         end
