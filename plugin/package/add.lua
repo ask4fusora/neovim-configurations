@@ -9,4 +9,5 @@ vim.pack.add({
     { src = 'https://github.com/nvim-mini/mini.completion',          version = 'stable' },
     { src = 'https://github.com/nvim-mini/mini.clue',                version = 'stable' },
     { src = 'https://github.com/nvim-mini/mini.files',               version = 'stable' },
+    { src = 'https://github.com/dmtrKovalenko/fff' }
 })

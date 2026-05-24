@@ -8,3 +8,8 @@ vim.keymap.set(
     end,
     { desc = 'Open file explorer' }
 )
+
+require('neovim_utility.g').insert_to_g_list(
+    'nominicompletion_filetypes',
+    'minifiles'
+)
