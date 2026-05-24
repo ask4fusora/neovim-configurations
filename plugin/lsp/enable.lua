@@ -1,7 +1,9 @@
-vim.lsp.enable({
-    'vtsls',
-    'biome',
-    'lua-language-server',
-    'json-language-server',
-    'tinymist',
-})
+vim.schedule(function()
+    vim.lsp.enable({
+        'vtsls',
+        'biome',
+        'lua-language-server',
+        'json-language-server',
+        'tinymist',
+    })
+end)
