@@ -3,4 +3,5 @@ vim.lsp.enable({
     'biome',
     'lua-language-server',
     'json-language-server',
+    'tinymist',
 })
