@@ -4,8 +4,8 @@ vim.schedule(function()
 
     set(
         'n',
-        '<M-F>',
+        '<Leader>lf',
         function() lsp.buf.format({ async = true }) end,
-        { desc = 'Format buffer (async)' }
+        { desc = 'LSP format buffer (async)' }
     )
 end)
