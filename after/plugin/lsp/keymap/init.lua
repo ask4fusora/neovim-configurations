@@ -1,3 +1,4 @@
+-- TODO: Only set lsp keymap on `LspAttach`.
 vim.schedule(function()
     local set = vim.keymap.set
     local lsp = vim.lsp
