@@ -11,6 +11,8 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 })
 
 require('mini.completion').setup({
+    -- NOTE: Mimicking `disable_completion_on_type`.
+    delay = { completion = 1000000 },
     lsp_completion = { source_func = 'omnifunc', auto_setup = false },
 })
 
