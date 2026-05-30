@@ -24,7 +24,7 @@ vim.keymap.set(
 -- table.insert(nocompletion_filetypes, "minifiles")
 -- vim.g.nominicompletion_filetypes = nocompletion_filetypes
 
-require('neovim_utility.g').insert_to_g_list(
+require('neovim_utility.g').insert_to_list(
     'nominicompletion_filetypes',
     'fff_input'
 )
