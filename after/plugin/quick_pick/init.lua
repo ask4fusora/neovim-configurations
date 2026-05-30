@@ -20,6 +20,15 @@ vim.keymap.set(
     { desc = 'Live grep' }
 )
 
+vim.api.nvim_create_user_command(
+    'FFFRescan',
+    function()
+        fff.scan_files()
+        fff.refresh_git_status()
+    end,
+    {}
+)
+
 require('neovim_utility.g').insert_to_list(
     'nominicompletion_filetypes',
     'fff_input'
