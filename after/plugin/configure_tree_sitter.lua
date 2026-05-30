@@ -16,7 +16,6 @@ vim.schedule(function()
             'luau',
             'typescript',
             'tsx',
-            'vue',
             'toml',
             'json',
         }
