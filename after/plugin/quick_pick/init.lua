@@ -20,10 +20,6 @@ vim.keymap.set(
     { desc = 'Live grep' }
 )
 
--- local nocompletion_filetypes = vim.g.nominicompletion_filetypes or {}
--- table.insert(nocompletion_filetypes, "minifiles")
--- vim.g.nominicompletion_filetypes = nocompletion_filetypes
-
 require('neovim_utility.g').insert_to_list(
     'nominicompletion_filetypes',
     'fff_input'
