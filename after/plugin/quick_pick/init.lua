@@ -1,6 +1,7 @@
 local fff = require('fff')
 
 vim.g.fff = {
+    prompt = "  ",
     layout = {
         prompt_position = 'top'
     }
