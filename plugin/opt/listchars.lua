@@ -1,2 +1,10 @@
 vim.o.list = true
-vim.o.listchars = vim.fn.join({ vim.o.listchars, "eol:" }, ',')
+vim.o.listchars = vim.fn.join(
+    {
+        "eol:",
+        "tab:→ ",
+        "trail:•",
+        "nbsp: ",
+    },
+    ','
+)
