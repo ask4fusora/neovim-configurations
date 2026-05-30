@@ -1,3 +1,1 @@
-vim.opt.termguicolors = false
-
-vim.cmd.colorscheme('ansi')
+vim.cmd.colorscheme('jb')
