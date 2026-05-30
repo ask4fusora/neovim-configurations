@@ -6,7 +6,19 @@ vim.schedule(function()
             'markdown',
             'markdown_inline',
             'typst',
-            'mermaid'
+            'mermaid',
+            'astro',
+            'zig',
+            'rust',
+            'cpp',
+            'sql',
+            'lua',
+            'luau',
+            'typescript',
+            'tsx',
+            'vue',
+            'toml',
+            'json',
         }
     })
 end)
