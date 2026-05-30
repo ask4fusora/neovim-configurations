@@ -5,5 +5,6 @@ vim.schedule(function()
         'lua-language-server',
         'json-language-server',
         'tinymist',
+        'astro-language-server',
     })
 end)
