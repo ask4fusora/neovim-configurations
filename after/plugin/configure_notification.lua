@@ -1,4 +1,5 @@
 require('mini.notify').setup({
+    window = { max_width_share = 0.618 },
     content = {
         format = function(notification)
             local time_string = vim.fn.strftime(

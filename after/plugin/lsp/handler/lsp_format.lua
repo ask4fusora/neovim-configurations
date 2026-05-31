@@ -9,7 +9,7 @@ vim.schedule(function()
     )
         -- 1. Run the default handler.
 
-        local notification_id = MiniNotify.add('formatting...', 'INFO')
+        local notification_id = MiniNotify.add('Formatting...', 'INFO')
 
         default_format_handler(err, result, context, config)
 
@@ -19,7 +19,7 @@ vim.schedule(function()
             MiniNotify.update(
                 notification_id,
                 {
-                    msg = "formatting failed: " .. err.message,
+                    msg = "Formatting failed: " .. err.message .. '.',
                     level = 'ERROR',
                 }
             )
@@ -36,7 +36,7 @@ vim.schedule(function()
             MiniNotify.update(
                 notification_id,
                 {
-                    msg = 'formatting completed',
+                    msg = 'Formatting completed.',
                     level = 'INFO',
                 }
             )
@@ -52,7 +52,7 @@ vim.schedule(function()
         MiniNotify.update(
             notification_id,
             {
-                msg = 'no formatting needed',
+                msg = 'No formatting needed.',
                 level = 'INFO',
             }
         )
