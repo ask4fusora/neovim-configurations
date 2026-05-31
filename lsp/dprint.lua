@@ -4,7 +4,7 @@ return {
         "dprint",
         "lsp"
     },
-    filetypes = { "markdown", "markdowninline" },
+    filetypes = { "markdown" },
     root_markers = {
         { "dprint.json", "dprint.jsonc" }
     },
