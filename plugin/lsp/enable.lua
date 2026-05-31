@@ -6,5 +6,6 @@ vim.schedule(function()
         'json-language-server',
         'tinymist',
         'astro-language-server',
+        'dprint',
     })
 end)
