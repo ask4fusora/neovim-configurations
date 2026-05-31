@@ -15,3 +15,21 @@ local function set_cursor_hl()
 end
 
 set_cursor_hl()
+
+local color_scheme_group = vim.api.nvim_create_augroup(
+    'CursorHlSetOnColorScheme',
+    { clear = true }
+)
+vim.api.nvim_create_autocmd(
+    'ColorScheme',
+    { group = color_scheme_group, callback = set_cursor_hl }
+)
+
+local option_set_group = vim.api.nvim_create_augroup(
+    'CursorHlSetOnOptionSet',
+    { clear = true }
+)
+vim.api.nvim_create_autocmd(
+    'OptionSet',
+    { pattern = 'background', group = option_set_group, callback = set_cursor_hl }
+)
