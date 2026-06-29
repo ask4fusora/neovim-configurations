@@ -7,11 +7,6 @@
     ],
     "version": "LuaJIT"
   },
-  "diagnostics": {
-    "globals": [
-      "vim"
-    ]
-  },
   "workspace": {
     "ignoreDir": [
       ".nvim"
