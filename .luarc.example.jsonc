@@ -11,6 +11,7 @@
     "ignoreDir": [
       ".nvim"
     ],
+    // TODO: Opt for a shape better serving `.nvim` folders.
     "library": [
       "~/AppData/Local/nvim-data/site/pack",
       "~/scoop/apps/neovim/current/share/nvim/runtime/lua"
