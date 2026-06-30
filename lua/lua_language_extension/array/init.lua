@@ -8,7 +8,9 @@ local function filter(array, predicate)
     local result = {}
 
     for i, v in ipairs(array) do
-        if predicate(v, i) then table.insert(result, v) end
+        if predicate(v, i) then
+            table.insert(result, v)
+        end
     end
 
     return result
@@ -22,7 +24,9 @@ end
 -- Find the position of the first elemement in the array that passes the test.
 local function find_pos(array, predicate)
     for i, v in ipairs(array) do
-        if predicate(v, i) then return i end
+        if predicate(v, i) then
+            return i
+        end
     end
 
     return 0

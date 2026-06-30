@@ -25,32 +25,33 @@
 
 ---@type vim.lsp.Config
 return {
-    cmd = { 'vtsls', '--stdio' },
+    cmd = { "vtsls", "--stdio" },
     init_options = {
-        hostInfo = 'neovim',
+        hostInfo = "neovim",
     },
     filetypes = {
-        'javascript',
-        'javascriptreact',
-        'typescript',
-        'typescriptreact',
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
     },
     --[[
     NOTE: We need `root_dir` function, because `deno` is troublesome.
     We would not want to start `vtsls` if `deno`'s root is closer than or equal to `node`'s root.
     --]]
     root_dir = function(bufnr, on_dir)
-        local deno_root_markers = { { 'deno.json', 'deno.jsonc' }, 'deno.lock' }
+        local deno_root_markers = { { "deno.json", "deno.jsonc" }, "deno.lock" }
         local node_root_markers = {
-            'package-lock.json',
-            'yarn.lock',
-            'pnpm-lock.yaml',
-            'bun.lockb',
-            'bun.lock',
+            "package-lock.json",
+            "yarn.lock",
+            "pnpm-lock.yaml",
+            "bun.lockb",
+            "bun.lock",
         }
 
         local deno_root_dir = vim.fs.root(bufnr, deno_root_markers)
-        local node_root_dir = vim.fs.root(bufnr, { node_root_markers, { '.git' } })
+        local node_root_dir =
+            vim.fs.root(bufnr, { node_root_markers, { ".git" } })
 
         if deno_root_dir == nil then
             return on_dir(node_root_dir or vim.fn.getcwd())

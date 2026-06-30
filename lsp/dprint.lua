@@ -2,10 +2,10 @@
 return {
     cmd = {
         "dprint",
-        "lsp"
+        "lsp",
     },
     filetypes = { "markdown" },
     root_markers = {
-        { "dprint.json", "dprint.jsonc" }
+        { "dprint.json", "dprint.jsonc" },
     },
 }

@@ -1,1 +1,1 @@
-vim.o.winborder = 'single'
+vim.o.winborder = "single"

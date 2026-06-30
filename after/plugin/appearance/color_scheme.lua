@@ -1,35 +1,32 @@
-vim.o.background = 'dark'
+vim.o.background = "dark"
 
-vim.cmd.colorscheme('jb')
+vim.cmd.colorscheme("jb")
 
 local function set_cursor_hl()
     -- NOTE: Setting `guicursor` is critical. Without it, the cursor will be
     -- inherited from the terminal solely.
-    vim.o.guicursor = vim.fn.join(
-        { vim.o.guicursor, 'a:Cursor' },
-        ','
-    )
+    vim.o.guicursor = vim.fn.join({ vim.o.guicursor, "a:Cursor" }, ",")
 
-    local hl_group = vim.api.nvim_get_hl(0, { name = 'Custom_Statusbar' })
-    vim.api.nvim_set_hl(0, 'Cursor', { force = true, bg = hl_group.fg })
+    local hl_group = vim.api.nvim_get_hl(0, { name = "Custom_Statusbar" })
+    vim.api.nvim_set_hl(0, "Cursor", { force = true, bg = hl_group.fg })
 end
 
 set_cursor_hl()
 
-local color_scheme_group = vim.api.nvim_create_augroup(
-    'CursorHlSetOnColorScheme',
-    { clear = true }
-)
+local color_scheme_group =
+    vim.api.nvim_create_augroup("CursorHlSetOnColorScheme", { clear = true })
 vim.api.nvim_create_autocmd(
-    'ColorScheme',
+    "ColorScheme",
     { group = color_scheme_group, callback = set_cursor_hl }
 )
 
-local option_set_group = vim.api.nvim_create_augroup(
-    'CursorHlSetOnOptionSet',
-    { clear = true }
-)
+local option_set_group =
+    vim.api.nvim_create_augroup("CursorHlSetOnOptionSet", { clear = true })
 vim.api.nvim_create_autocmd(
-    'OptionSet',
-    { pattern = 'background', group = option_set_group, callback = set_cursor_hl }
+    "OptionSet",
+    {
+        pattern = "background",
+        group = option_set_group,
+        callback = set_cursor_hl,
+    }
 )

@@ -1,1 +1,3 @@
-vim.keymap.set("n", "<C-s>", function() vim.cmd.w() end)
+vim.keymap.set("n", "<C-s>", function()
+    vim.cmd.w()
+end)

@@ -1,11 +1,11 @@
 vim.schedule(function()
     vim.lsp.enable({
-        'vtsls',
-        'biome',
-        'lua-language-server',
-        'json-language-server',
-        'tinymist',
-        'astro-language-server',
-        'dprint',
+        "vtsls",
+        "biome",
+        "lua-language-server",
+        "json-language-server",
+        "tinymist",
+        "astro-language-server",
+        "dprint",
     })
 end)

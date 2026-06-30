@@ -1,7 +1,4 @@
-local group = vim.api.nvim_create_augroup(
-    'LspFormatOnSave',
-    { clear = true }
-)
+local group = vim.api.nvim_create_augroup("LspFormatOnSave", { clear = true })
 
 -- vim.api.nvim_create_autocmd("BufWritePre", {
 --     group = group,
