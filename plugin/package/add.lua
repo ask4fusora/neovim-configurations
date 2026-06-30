@@ -1,6 +1,7 @@
 vim.pack.add({
     { src = "https://github.com/nickkadutskyi/jb.nvim" },
     { src = "https://github.com/arborist-ts/arborist.nvim" },
+    { src = "https://github.com/dmmulroy/ts-error-translator.nvim" },
     {
         src = "https://github.com/chomosuke/typst-preview.nvim",
         version = vim.version.range("1.*"),
