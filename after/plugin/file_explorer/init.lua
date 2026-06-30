@@ -1,7 +1,17 @@
-require("mini.files").setup({})
+local keymap = require("neovim.keymap")
 
-vim.keymap.set("n", "<Leader>e", function()
-    MiniFiles.open()
-end, { desc = "Open file explorer" })
-
-require("neovim.g").insert_to_list("nominicompletion_filetypes", "minifiles")
+keymap.lazy_load(
+    function()
+        require("mini.files").setup({})
+        require("neovim.g").insert_to_list(
+            "nominicompletion_filetypes",
+            "minifiles"
+        )
+    end,
+    "n",
+    "<Leader>e",
+    function()
+        MiniFiles.open()
+    end,
+    { desc = "Open file explorer" }
+)
