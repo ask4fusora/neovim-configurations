@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
-local array = require("lua_language_extension.array")
+local array = require("lua.array")
 vim.g.nominicompletion_filetypes = {} ---@type string[]
 
 vim.api.nvim_create_autocmd("FileType", {
