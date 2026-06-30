@@ -22,11 +22,9 @@ vim.api.nvim_create_autocmd(
 
 local option_set_group =
     vim.api.nvim_create_augroup("CursorHlSetOnOptionSet", { clear = true })
-vim.api.nvim_create_autocmd(
-    "OptionSet",
-    {
-        pattern = "background",
-        group = option_set_group,
-        callback = set_cursor_hl,
-    }
-)
+
+vim.api.nvim_create_autocmd("OptionSet", {
+    pattern = "background",
+    group = option_set_group,
+    callback = set_cursor_hl,
+})
