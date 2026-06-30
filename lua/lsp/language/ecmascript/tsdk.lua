@@ -17,8 +17,23 @@ local function get_tsdk_path(root_dir)
     return nil
 end
 
+--- Make sure `init_options` has `typescript = {}` at least.
+---@param config vim.lsp.ClientConfig
+local function configure_tsdk(config)
+    local typescript_config = config.init_options.typescript
+    ---@cast typescript_config table<string, any>
+
+    if not typescript_config.tsdk then
+        local tsdk_path = get_tsdk_path(config.root_dir)
+
+        if tsdk_path ~= nil then
+            typescript_config.tsdk = tsdk_path
+        end
+    end
+end
+
 local M = {
-    get_tsdk_path = get_tsdk_path,
+    configure_tsdk = configure_tsdk,
 }
 
 return M
