@@ -1,4 +1,4 @@
-vim.schedule(function()
+local function override_format_handler()
     local default_format_handler = vim.lsp.handlers["textDocument/formatting"]
 
     vim.lsp.handlers["textDocument/formatting"] = function(
@@ -50,4 +50,9 @@ vim.schedule(function()
             MiniNotify.remove(notification_id)
         end, 1000)
     end
-end)
+end
+
+vim.api.nvim_create_autocmd(
+    "LspAttach",
+    { once = true, callback = override_format_handler }
+)
