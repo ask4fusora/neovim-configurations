@@ -1,4 +1,4 @@
-local lsp_utils = require("neovim_utility.lsp")
+local lsp_utils = require("neovim.lsp")
 
 ---@type vim.lsp.Config
 return {

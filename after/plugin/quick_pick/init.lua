@@ -20,7 +20,4 @@ vim.api.nvim_create_user_command("FFFRescan", function()
     fff.refresh_git_status()
 end, {})
 
-require("neovim_utility.g").insert_to_list(
-    "nominicompletion_filetypes",
-    "fff_input"
-)
+require("neovim.g").insert_to_list("nominicompletion_filetypes", "fff_input")
