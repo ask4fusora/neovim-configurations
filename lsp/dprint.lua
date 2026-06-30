@@ -1,9 +1,10 @@
 ---@type vim.lsp.Config
 return {
-    cmd = {
+    cmd = require("lsp.ecosystem.nodejs.cmd").configure_cmd(
         "dprint",
-        "lsp",
-    },
+        { "lsp" },
+        false
+    ),
     filetypes = { "markdown" },
     root_markers = {
         { "dprint.json", "dprint.jsonc" },
