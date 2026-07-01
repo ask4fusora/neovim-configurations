@@ -1,4 +1,9 @@
-vim.o.background = "dark"
+---@type string|nil
+local theme = vim.env.SYSTEM_THEME
+
+if theme and theme:find("Light") then
+    vim.o.background = "light"
+end
 
 vim.cmd.colorscheme("jb")
 
