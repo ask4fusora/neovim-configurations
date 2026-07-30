@@ -3,6 +3,7 @@ vim.filetype.add({
         mbt = "moonbit",
         mbti = "moonbit",
         moonbit = "moonbit",
+        mbtp = "moonbit_mbtp",
     },
     filename = {
         ["moon.pkg"] = "moonbit",
@@ -17,6 +18,7 @@ vim.api.nvim_create_autocmd("FileType", {
             install_popular = true,
             ensure_installed = {
                 "moonbit",
+                "moonbit_mbtp",
                 "markdown",
                 "markdown_inline",
                 "typst",
@@ -43,6 +45,10 @@ vim.api.nvim_create_autocmd("FileType", {
                 moonbit = {
                     url = "https://github.com/moonbitlang/tree-sitter-moonbit",
                 },
+                moonbit_mbtp = {
+                    url = "https://github.com/moonbitlang/tree-sitter-moonbit",
+                    location = "grammars/mbtp",
+                }
             }
         })
     end,
