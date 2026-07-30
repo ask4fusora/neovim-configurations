@@ -7,5 +7,6 @@ vim.schedule(function()
         "tinymist",
         "astro-language-server",
         "dprint",
+        "moon-lsp"
     })
 end)
