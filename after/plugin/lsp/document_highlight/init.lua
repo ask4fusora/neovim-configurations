@@ -17,6 +17,8 @@ local function document_highlight()
                     return
                 end
 
+                vim.lsp.buf.clear_references()
+
                 if result then
                     vim.lsp.handlers["textDocument/documentHighlight"](
                         err,
@@ -35,8 +37,5 @@ end
 
 vim.api.nvim_create_autocmd("CursorMoved", {
     group = vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = true }),
-    callback = debounce_fn(function()
-        vim.lsp.buf.clear_references()
-        document_highlight()
-    end, DEBOUNCE_DELAY_MS)
+    callback = debounce_fn(document_highlight, DEBOUNCE_DELAY_MS)
 })
