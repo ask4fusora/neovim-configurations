@@ -35,7 +35,7 @@ local function document_highlight()
     end
 end
 
-vim.api.nvim_create_autocmd("CursorMoved", {
+vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
     group = vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = true }),
     callback = debounce_fn(document_highlight, DEBOUNCE_DELAY_MS)
 })
