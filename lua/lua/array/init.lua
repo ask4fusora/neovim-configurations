@@ -2,8 +2,8 @@
 ---@param array T[] The list to filter.
 ---@param predicate fun(item: T, index: integer): boolean The test function.
 ---@return T[] result A new list with only the elements that passed the test.
--- ---
--- Filters a list based on a predicate function.
+------
+---Filters a list based on a predicate function.
 local function filter(array, predicate)
     local result = {}
 
@@ -20,8 +20,8 @@ end
 ---@param array T[] The list to filter.
 ---@param predicate fun(item: T, index: integer): boolean The test function.
 ---@return integer index The position of the first item, or 0 if doesn't find any.
--- ---
--- Find the position of the first elemement in the array that passes the test.
+------
+---Find the position of the first elemement in the array that passes the test.
 local function find_pos(array, predicate)
     for i, v in ipairs(array) do
         if predicate(v, i) then
