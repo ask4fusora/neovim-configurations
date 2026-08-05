@@ -1,3 +1,5 @@
+-- I forgot why I did this. Kinda cool so let's keep this.
+
 local function override_format_handler()
     local default_format_handler = vim.lsp.handlers["textDocument/formatting"]
 
