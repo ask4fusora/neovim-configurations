@@ -1,18 +1,18 @@
-vim.filetype.add({
-    extension = {
-        mbt = "moonbit",
-        mbti = "moonbit",
-        moonbit = "moonbit",
-        mbtp = "moonbit_mbtp",
-    },
-    filename = {
-        ["moon.pkg"] = "moonbit",
-    },
-})
-
 vim.api.nvim_create_autocmd("FileType", {
     once = true,
     callback = function()
+        vim.filetype.add({
+            extension = {
+                mbt = "moonbit",
+                mbti = "moonbit",
+                moonbit = "moonbit",
+                mbtp = "moonbit_mbtp",
+            },
+            filename = {
+                ["moon.pkg"] = "moonbit",
+            },
+        })
+
         require("arborist").setup({
             update_cadence = "weekly",
             install_popular = true,
