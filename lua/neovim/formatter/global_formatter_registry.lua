@@ -10,7 +10,8 @@ local biome_formatters = {
 _G.Formatter.formatters_by_filetype = {
     lua = { { language_server = { name = "lua-language-server" } } },
     typescriptreact = biome_formatters,
-    typescript = biome_formatters
+    typescript = biome_formatters,
+    typst = { { language_server = { name = "tinymist" } } },
 }
 
 return _G.Formatter
