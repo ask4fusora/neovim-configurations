@@ -1,3 +1,5 @@
+vim.keymap.set("ca", "grep", "silent grep!")
+
 vim.keymap.set({ "n", "v" }, "<C-s>", function()
     vim.cmd("silent w")
 end)
