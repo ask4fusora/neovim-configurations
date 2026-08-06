@@ -18,6 +18,7 @@ local function lazy_load(setup, keymaps)
         vim.keymap.set(modes, lhs, function()
             if not is_setup then
                 setup()
+                is_setup = true
             end
 
             ---@type vim.keymap.del.Opts?
