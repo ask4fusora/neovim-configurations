@@ -12,10 +12,22 @@ keymap.lazy_load(
             "minifiles"
         )
     end,
-    "n",
-    "<Leader>e",
-    function()
-        MiniFiles.open(vim.api.nvim_buf_get_name(0))
-    end,
-    { desc = "Open file explorer" }
+    {
+        {
+            modes = "n",
+            lhs = "<Leader>e",
+            rhs = function()
+                MiniFiles.open()
+            end,
+            opts = { desc = "Open file explorer" }
+        },
+        {
+            modes = "n",
+            lhs = "<Leader>E",
+            rhs = function()
+                MiniFiles.open(vim.api.nvim_buf_get_name(0))
+            end,
+            opts = { desc = "Open file explorer at current file" }
+        }
+    }
 )
