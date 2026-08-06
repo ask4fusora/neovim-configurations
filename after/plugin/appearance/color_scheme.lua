@@ -5,6 +5,12 @@ if theme and theme:find("Light") then
     vim.o.background = "light"
 end
 
+require("jb").setup({
+    transparent = true,
+    snacks = { explorer = { enabled = false } },
+    telescope = { enabled = false },
+})
+
 vim.cmd.colorscheme("jb")
 
 local function set_cursor_hl()
