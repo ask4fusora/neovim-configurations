@@ -3,6 +3,11 @@ vim.g.fff = {
     layout = {
         prompt_position = "top",
     },
+    follow_symlinks = true,
+    debug = {
+        enabled = false,
+        show_scores = false,
+    },
 }
 
 require("neovim.g").insert_to_list("nominicompletion_filetypes", "fff_input")
@@ -18,8 +23,3 @@ end, { desc = "Live grep" })
 vim.keymap.set("v", "<Leader>/", function()
     require("fff").live_grep_under_cursor()
 end, { desc = "Live grep under cursor" })
-
-vim.api.nvim_create_user_command("FFFRescan", function()
-    require("fff").scan_files()
-    require("fff").refresh_git_status()
-end, {})
