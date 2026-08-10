@@ -81,6 +81,7 @@ local function open_picker_win(
     vim.wo[win].wrap = false
 
     -- Initially select the current buffer.
+
     for index, bufnr in ipairs(buffers) do
         if bufnr == current_bufnr then
             api.nvim_win_set_cursor(win, { index, 0 })
@@ -111,26 +112,104 @@ local function open_buffer(win, buffers)
     end
 end
 
----@param win integer
+---@param current_win integer
+---@param picker_win integer
 ---@param picker_bufnr integer
 ---@param buffers integer[]
-local function set_picker_keymaps(win, picker_bufnr, buffers)
+---@param buffer_paths string[]
+local function close_buffer(
+    current_win,
+    picker_win,
+    picker_bufnr,
+    buffers,
+    buffer_paths
+)
+    local index = unpack(api.nvim_win_get_cursor(picker_win))
+    local selected_bufnr = buffers[index]
+    assert(
+        type(selected_bufnr) == "number",
+        "`buffers[index]` should have been `integer`."
+    )
+
+    local success = pcall(api.nvim_win_call, current_win, function()
+        api.nvim_buf_delete(selected_bufnr, {
+            force = false,
+        })
+    end)
+
+    if not success then
+        vim.notify(
+            "Cannot close buffer unsaved since last change.",
+            vim.log.levels.ERROR
+        )
+        return
+    end
+
+    -- Remove selected buffer from memory.
+
+    table.remove(buffers, index)
+    table.remove(buffer_paths, index)
+
+    -- Remove selected buffer from picker UI.
+
+    vim.bo[picker_bufnr].modifiable = true
+    api.nvim_buf_set_lines(picker_bufnr, 0, -1, false, buffer_paths)
+    vim.bo[picker_bufnr].modifiable = false
+
+    -- Update picker height.
+
+    local _, height = calc_buf_dimensions(buffer_paths)
+    if height == 0 then
+        close_picker(picker_win)
+        return
+    end
+
+    api.nvim_win_set_config(picker_win, {
+        height = height,
+    })
+end
+
+---@param current_win integer
+---@param picker_win integer
+---@param picker_bufnr integer
+---@param buffers integer[]
+---@param buffer_paths string[]
+local function set_picker_keymaps(
+    current_win,
+    picker_win,
+    picker_bufnr,
+    buffers,
+    buffer_paths
+)
     vim.keymap.set("n", "<CR>", function()
-        open_buffer(win, buffers)
+        open_buffer(picker_win, buffers)
     end, {
         buffer = picker_bufnr,
         nowait = true,
     })
 
     vim.keymap.set("n", "q", function()
-        close_picker(win)
+        close_picker(picker_win)
     end, {
         buffer = picker_bufnr,
         nowait = true,
     })
 
     vim.keymap.set("n", "<Esc>", function()
-        close_picker(win)
+        close_picker(picker_win)
+    end, {
+        buffer = picker_bufnr,
+        nowait = true,
+    })
+
+    vim.keymap.set("n", "dd", function()
+        close_buffer(
+            current_win,
+            picker_win,
+            picker_bufnr,
+            buffers,
+            buffer_paths
+        )
     end, {
         buffer = picker_bufnr,
         nowait = true,
@@ -144,13 +223,20 @@ local function pick_buffer()
     end
 
     local current_bufnr = api.nvim_get_current_buf()
+    local current_win = api.nvim_get_current_win()
     local buffer_paths = buffers_to_paths(buffers)
     local picker_bufnr = create_picker_buffer(buffer_paths)
     local width, height = calc_buf_dimensions(buffer_paths)
-    local win =
+    local picker_win =
         open_picker_win(buffers, current_bufnr, picker_bufnr, width, height)
 
-    set_picker_keymaps(win, picker_bufnr, buffers)
+    set_picker_keymaps(
+        current_win,
+        picker_win,
+        picker_bufnr,
+        buffers,
+        buffer_paths
+    )
 end
 
 return {
