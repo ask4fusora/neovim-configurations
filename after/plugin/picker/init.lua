@@ -23,3 +23,7 @@ end, { desc = "Live grep" })
 vim.keymap.set("v", "<Leader>/", function()
     require("fff").live_grep_under_cursor()
 end, { desc = "Live grep under cursor" })
+
+vim.keymap.set({ "n", "v" }, "<Leader>b", function()
+    require("neovim.picker.pick_buffer").pick_buffer()
+end, {})
