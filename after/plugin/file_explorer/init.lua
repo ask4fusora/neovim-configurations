@@ -1,6 +1,6 @@
-local keymap = require("neovim.keymap")
+local lazy_loader = require("neovim.lazy_loader")
 
-keymap.lazy_load(
+lazy_loader.set_keymap(
     function()
         require("mini.files").setup({
             windows = {

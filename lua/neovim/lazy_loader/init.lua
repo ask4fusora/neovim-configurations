@@ -6,7 +6,7 @@
 
 ---@param setup fun() Setup function to call before setting the keymap.
 ---@param keymaps Keymap[] List of keymaps.
-local function lazy_load(setup, keymaps)
+local function set_keymap(setup, keymaps)
     local is_setup = false
 
     for _, keymap in ipairs(keymaps) do
@@ -35,5 +35,5 @@ local function lazy_load(setup, keymaps)
 end
 
 return {
-    lazy_load = lazy_load,
+    set_keymap = set_keymap,
 }
