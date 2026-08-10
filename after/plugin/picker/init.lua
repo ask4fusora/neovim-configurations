@@ -15,6 +15,10 @@ vim.keymap.set("n", "<Leader>/", function()
     require("fff").live_grep()
 end, { desc = "Live grep" })
 
+vim.keymap.set("v", "<Leader>/", function()
+    require("fff").live_grep_under_cursor()
+end, { desc = "Live grep under cursor" })
+
 vim.api.nvim_create_user_command("FFFRescan", function()
     require("fff").scan_files()
     require("fff").refresh_git_status()
