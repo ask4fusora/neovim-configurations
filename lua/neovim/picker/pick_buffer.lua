@@ -119,6 +119,7 @@ local function set_picker_keymaps(win, picker_bufnr, buffers)
         open_buffer(win, buffers)
     end, {
         buffer = picker_bufnr,
+        nowait = true,
     })
 
     vim.keymap.set("n", "q", function()
