@@ -25,6 +25,8 @@ _G.Formatter.formatters_by_filetype = {
     typescript = biome_formatters,
 
     typst = { { language_server = { name = "tinymist" } } },
+
+    nu = { { external = { command = "nufmt", arguments = { "--stdin" } } } },
 }
 
 return _G.Formatter
