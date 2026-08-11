@@ -27,6 +27,8 @@ _G.Formatter.formatters_by_filetype = {
     typst = { { language_server = { name = "tinymist" } } },
 
     nu = { { external = { command = "nufmt", arguments = { "--stdin" } } } },
+
+    yaml = { { language_server = { name = "yaml-language-server" } } },
 }
 
 return _G.Formatter

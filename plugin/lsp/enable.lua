@@ -11,6 +11,7 @@ vim.api.nvim_create_autocmd("SafeState", {
             "dprint",
             "moon-lsp",
             "nu",
+            "yaml-language-server",
         })
     end,
 })

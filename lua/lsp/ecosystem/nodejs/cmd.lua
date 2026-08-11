@@ -1,5 +1,5 @@
----@param command string
----@param arguments string[]?
+---@param command string Binary.
+---@param arguments string[]? Default `{ "--stdio" }`.
 ---@param better_typescript_error boolean? Default `true`.
 ---@return fun(
 ---  dispatchers: vim.lsp.rpc.Dispatchers,
