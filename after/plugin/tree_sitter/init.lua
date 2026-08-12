@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd("SafeState", {
+vim.api.nvim_create_autocmd("FileType", {
     once = true,
     callback = function()
         require("arborist").setup({
