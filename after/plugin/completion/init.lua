@@ -1,6 +1,5 @@
 vim.o.autocomplete = false
 vim.o.completeopt = "fuzzy,menuone,noselect"
-vim.o.pumborder = "single"
 
 vim.g.nominicompletion_filetypes = {} ---@type string[]
 

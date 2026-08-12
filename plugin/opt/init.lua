@@ -5,6 +5,7 @@ vim.g.mapleader = " "
 -- Winborder.
 
 vim.o.winborder = "single"
+vim.o.pumborder = "single"
 
 -- Gutter.
 
