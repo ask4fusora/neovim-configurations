@@ -1,11 +1,10 @@
 ---@type vim.lsp.Config
 return {
-    cmd = require("lsp.ecosystem.nodejs.cmd").configure_cmd( "yaml-language-server"),
+    cmd = require("lsp.ecosystem.nodejs.cmd").configure_cmd(
+        "yaml-language-server"
+    ),
     filetypes = {
         "yaml",
-        "yaml.docker-compose",
-        "yaml.gitlab",
-        "yaml.helm-values",
     },
     root_markers = { ".git" },
     settings = {
