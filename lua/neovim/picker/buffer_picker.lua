@@ -4,23 +4,23 @@ local api = vim.api
 
 ---@return integer[]
 local function list_buffers()
-    return vim.tbl_filter(function(buf)
-        return api.nvim_buf_is_valid(buf) and vim.bo[buf].buflisted
+    return vim.tbl_filter(function(bufnr)
+        return api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buflisted
     end, api.nvim_list_bufs())
 end
 
----@param buffers integer[]
+---@param bufnrs integer[]
 ---@return string[]
-local function buffers_to_paths(buffers)
-    return vim.tbl_map(function(buf)
-        local buf_name = api.nvim_buf_get_name(buf)
+local function buffers_to_paths(bufnrs)
+    return vim.tbl_map(function(bufnr)
+        local buf_name = api.nvim_buf_get_name(bufnr)
         local buf_fname = buf_name == "" and "untitled"
             or vim.fn.fnamemodify(buf_name, ":~:.")
 
-        local modified_marker = vim.bo[buf].modified and " [+]" or ""
+        local modified_marker = vim.bo[bufnr].modified and " [+]" or ""
 
         return ("%s%s"):format(buf_fname, modified_marker)
-    end, buffers)
+    end, bufnrs)
 end
 
 ---@param buffer_paths string[]
@@ -54,19 +54,19 @@ local function calc_buf_dimensions(buffer_paths)
     return width, height
 end
 
----@param buffers integer[]
+---@param bufnrs integer[]
 ---@param current_bufnr integer
 ---@param picker_bufnr integer
 ---@param width integer
 ---@param height integer
 local function open_picker_win(
-    buffers,
+    bufnrs,
     current_bufnr,
     picker_bufnr,
     width,
     height
 )
-    local win = api.nvim_open_win(picker_bufnr, true, {
+    local winid = api.nvim_open_win(picker_bufnr, true, {
         relative = "editor",
         style = "minimal",
         title = " Buffers ",
@@ -77,61 +77,57 @@ local function open_picker_win(
         col = math.floor((vim.o.columns - width) / 2),
     })
 
-    vim.wo[win].cursorline = true
-    vim.wo[win].wrap = false
+    vim.wo[winid].cursorline = true
+    vim.wo[winid].wrap = false
 
     -- Initially select the current buffer.
 
-    for index, bufnr in ipairs(buffers) do
+    for index, bufnr in ipairs(bufnrs) do
         if bufnr == current_bufnr then
-            api.nvim_win_set_cursor(win, { index, 0 })
+            api.nvim_win_set_cursor(winid, { index, 0 })
             break
         end
     end
 
-    return win
+    return winid
 end
 
----@param win integer
-local function close_picker(win)
-    if api.nvim_win_is_valid(win) then
-        api.nvim_win_close(win, true)
+---@param winid integer
+local function close_picker(winid)
+    if api.nvim_win_is_valid(winid) then
+        api.nvim_win_close(winid, true)
     end
 end
 
----@param win integer
----@param buffers integer[]
-local function open_buffer(win, buffers)
-    local index = unpack(api.nvim_win_get_cursor(win))
-    local selected_bufnr = buffers[index]
+---@param winid integer
+---@param bufnrs integer[]
+local function open_buffer(winid, bufnrs)
+    local index = unpack(api.nvim_win_get_cursor(winid))
+    local selected_bufnr = bufnrs[index]
 
-    close_picker(win)
+    close_picker(winid)
 
     if selected_bufnr and api.nvim_buf_is_valid(selected_bufnr) then
         api.nvim_set_current_buf(selected_bufnr)
     end
 end
 
----@param current_win integer
----@param picker_win integer
+---@param current_winid integer
+---@param picker_winid integer
 ---@param picker_bufnr integer
----@param buffers integer[]
+---@param bufnrs integer[]
 ---@param buffer_paths string[]
 local function close_buffer(
-    current_win,
-    picker_win,
+    current_winid,
+    picker_winid,
     picker_bufnr,
-    buffers,
+    bufnrs,
     buffer_paths
 )
-    local index = unpack(api.nvim_win_get_cursor(picker_win))
-    local selected_bufnr = buffers[index]
-    assert(
-        type(selected_bufnr) == "number",
-        "`buffers[index]` should have been `integer`."
-    )
+    local index = unpack(api.nvim_win_get_cursor(picker_winid))
+    local selected_bufnr = bufnrs[index]
 
-    local success = pcall(api.nvim_win_call, current_win, function()
+    local success = pcall(api.nvim_win_call, current_winid, function()
         api.nvim_buf_delete(selected_bufnr, {
             force = false,
         })
@@ -147,7 +143,7 @@ local function close_buffer(
 
     -- Remove selected buffer from memory.
 
-    table.remove(buffers, index)
+    table.remove(bufnrs, index)
     table.remove(buffer_paths, index)
 
     -- Remove selected buffer from picker UI.
@@ -160,43 +156,43 @@ local function close_buffer(
 
     local _, height = calc_buf_dimensions(buffer_paths)
     if height == 0 then
-        close_picker(picker_win)
+        close_picker(picker_winid)
         return
     end
 
-    api.nvim_win_set_config(picker_win, {
+    api.nvim_win_set_config(picker_winid, {
         height = height,
     })
 end
 
----@param current_win integer
----@param picker_win integer
+---@param current_winid integer
+---@param picker_winid integer
 ---@param picker_bufnr integer
----@param buffers integer[]
+---@param bufnrs integer[]
 ---@param buffer_paths string[]
 local function set_picker_keymaps(
-    current_win,
-    picker_win,
+    current_winid,
+    picker_winid,
     picker_bufnr,
-    buffers,
+    bufnrs,
     buffer_paths
 )
     vim.keymap.set("n", "<CR>", function()
-        open_buffer(picker_win, buffers)
+        open_buffer(picker_winid, bufnrs)
     end, {
         buffer = picker_bufnr,
         nowait = true,
     })
 
     vim.keymap.set("n", "q", function()
-        close_picker(picker_win)
+        close_picker(picker_winid)
     end, {
         buffer = picker_bufnr,
         nowait = true,
     })
 
     vim.keymap.set("n", "<Esc>", function()
-        close_picker(picker_win)
+        close_picker(picker_winid)
     end, {
         buffer = picker_bufnr,
         nowait = true,
@@ -204,10 +200,10 @@ local function set_picker_keymaps(
 
     vim.keymap.set("n", "dd", function()
         close_buffer(
-            current_win,
-            picker_win,
+            current_winid,
+            picker_winid,
             picker_bufnr,
-            buffers,
+            bufnrs,
             buffer_paths
         )
     end, {
@@ -217,24 +213,24 @@ local function set_picker_keymaps(
 end
 
 local function pick_buffer()
-    local buffers = list_buffers()
-    if #buffers == 0 then
+    local bufnrs = list_buffers()
+    if #bufnrs == 0 then
         return
     end
 
     local current_bufnr = api.nvim_get_current_buf()
-    local current_win = api.nvim_get_current_win()
-    local buffer_paths = buffers_to_paths(buffers)
+    local current_winid = api.nvim_get_current_win()
+    local buffer_paths = buffers_to_paths(bufnrs)
     local picker_bufnr = create_picker_buffer(buffer_paths)
     local width, height = calc_buf_dimensions(buffer_paths)
-    local picker_win =
-        open_picker_win(buffers, current_bufnr, picker_bufnr, width, height)
+    local picker_winid =
+        open_picker_win(bufnrs, current_bufnr, picker_bufnr, width, height)
 
     set_picker_keymaps(
-        current_win,
-        picker_win,
+        current_winid,
+        picker_winid,
         picker_bufnr,
-        buffers,
+        bufnrs,
         buffer_paths
     )
 end
