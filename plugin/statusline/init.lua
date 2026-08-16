@@ -134,8 +134,8 @@ local components = {
         end,
     },
     {
-        render = function()
-            return "%Y"
+        render = function(ctx)
+            return vim.bo[ctx.bufnr].filetype
         end,
     },
     {
