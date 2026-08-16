@@ -8,18 +8,24 @@
 
 local array = require("lua.array")
 
-vim.api.nvim_set_hl(0, "StlFilenameModified", { bold = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = vim.api.nvim_create_augroup("StlColorScheme", { clear = true }),
+    callback = function()
+        vim.api.nvim_set_hl(0, "StlFilenameModified", { bold = true })
 
-local title_hl_group = vim.api.nvim_get_hl(0, { name = "Title", link = false })
-vim.api.nvim_set_hl(
-    0,
-    "StlVimMode",
-    vim.tbl_extend("force", title_hl_group, {
-        bold = true,
-        italic = false,
-        reverse = true,
-    })
-)
+        local title_hl_group =
+            vim.api.nvim_get_hl(0, { name = "Title", link = false })
+        vim.api.nvim_set_hl(
+            0,
+            "StlVimMode",
+            vim.tbl_extend("force", title_hl_group, {
+                bold = true,
+                italic = false,
+                reverse = true,
+            })
+        )
+    end,
+})
 
 local mode_name_by_key_code = {
     n = "NORMAL",
