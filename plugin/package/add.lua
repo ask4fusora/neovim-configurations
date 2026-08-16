@@ -23,4 +23,9 @@ vim.pack.add({
         version = "stable",
     },
     { src = "https://github.com/dmtrKovalenko/fff" },
+    { src = "https://github.com/tpope/vim-surround" },
+    { src = "https://github.com/tommcdo/vim-exchange" },
+    { src = "https://github.com/jeetsukumaran/vim-indentwise" },
+    { src = "https://github.com/justinmk/vim-sneak" },
+    { src = "https://github.com/nvim-mini/mini.ai", version = "stable" },
 })
