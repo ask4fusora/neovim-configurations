@@ -62,3 +62,6 @@ vim.o.sidescrolloff = 8
 
 vim.o.incsearch = true
 vim.o.smartcase = true
+
+-- Vim mode.
+vim.o.showmode = false
