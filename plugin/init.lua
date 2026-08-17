@@ -20,6 +20,7 @@ require("initializer").initialize({
         event = "SafeState",
         module_names = {
             "lsp.setup",
+            "file_explorer.setup",
         },
     },
     {

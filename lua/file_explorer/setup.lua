@@ -1,11 +1,18 @@
-local lazy_keymap = require("lazy.keymap")
+local keymap = require("lazy.keymap")
 
-lazy_keymap.set(function()
-    require("mini.files").setup({
+keymap.set(function()
+    local success, mf = pcall(require, "mini.files")
+    if not success then
+        vim.print("`mini.files` is either not installed or not available.", mf)
+        return
+    end
+
+    mf.setup({
         windows = {
             max_number = 3,
         },
     })
+
     require("neovim.g").insert_to_list(
         "nominicompletion_filetypes",
         "minifiles"
