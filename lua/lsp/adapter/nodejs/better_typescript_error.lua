@@ -1,17 +1,28 @@
 local is_configured = false
 
 return {
-    init = function()
+    setup = function()
         if is_configured then
             return
         end
 
-        require("ts-error-translator").setup({
+        local success, bte = pcall(require, "ts-error-translator")
+        if not success then
+            vim.print(
+                "`ts-error-translator` is either not installed or not available.",
+                bte
+            )
+            return
+        end
+
+        bte.setup({
             auto_attach = true,
             servers = {
                 "astro-language-server",
                 "vtsls",
             },
         })
+
+        is_configured = true
     end,
 }
