@@ -1,5 +1,3 @@
-_G.fsr = {}
-
 require("initializer").initialize({
     {
         module_names = {
