@@ -11,8 +11,17 @@ vim.lsp.enable({
     "yaml-language-server",
 })
 
-require("initializer").require_modules({
-    "lsp.document_highlight.setup",
-    "lsp.diagnostic.setup",
-    "lsp.keymap.setup",
+require("initializer").initialize({
+    {
+        module_names = {
+            "lsp.document_highlight.setup",
+            "lsp.keymap.setup",
+        },
+    },
+    {
+        event = "LspAttach",
+        module_names = {
+            "lsp.diagnostic.setup",
+        },
+    }
 })

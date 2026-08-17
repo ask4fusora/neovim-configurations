@@ -3,8 +3,7 @@ require("vim._core.ui2").enable()
 
 _G.fsr = {}
 
----@type fsr.initializer.Registration[]
-local registry = {
+require("initializer").initialize({
     {
         module_names = {
             "opt.setup",
@@ -24,6 +23,4 @@ local registry = {
             "lsp.setup",
         },
     },
-}
-
-require("initializer").initialize(registry)
+})
