@@ -66,5 +66,10 @@ vim.o.sidescrolloff = 8
 vim.o.incsearch = true
 vim.o.smartcase = true
 
+-- Completion.
+
+vim.o.autocomplete = false
+vim.o.completeopt = "fuzzy,menuone,noselect"
+
 -- Vim mode.
 vim.o.showmode = false

@@ -22,4 +22,10 @@ require("initializer").initialize({
             "lsp.setup",
         },
     },
+    {
+        event = "LspAttach",
+        module_names = {
+            "completion.setup",
+        },
+    },
 })
