@@ -3,13 +3,23 @@ _G.fsr = {}
 require("initializer").initialize({
     {
         module_names = {
-            "opt.setup",
-            "plugin.setup",
-            "plugin.fff.setup",
-            "appearance.setup",
             "tweak.setup",
-            "statusline.setup",
+            "plugin.setup",
+            "appearance.setup",
             "filetype.setup",
+        },
+    },
+    {
+        event = "SafeState",
+        module_names = {
+            "opt.setup",
+            "statusline.setup",
+            "tree_sitter.mini_ai.setup",
+            "lsp.setup",
+            "file_explorer.setup",
+            "plugin.fff.setup",
+            "picker.fff.setup",
+            "notification.setup",
             "formatter.setup",
             "autocmd.highlight_on_yank.setup",
             "autocmd.open_quick_fix_list_post_grep.setup",
@@ -19,21 +29,18 @@ require("initializer").initialize({
         },
     },
     {
-        event = "SafeState",
-        module_names = {
-            "lsp.setup",
-            "file_explorer.setup",
-            "picker.fff.setup",
-            "notification.setup",
-        },
-    },
-    {
         event = "LspAttach",
         module_names = {
             "lsp.completion.setup",
             "lsp.diagnostic.setup",
             "lsp.document_highlight.setup",
             "lsp.keymap.setup",
+        },
+    },
+    {
+        event = "FileType",
+        module_names = {
+            "tree_sitter.setup",
         },
     },
     {
