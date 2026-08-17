@@ -145,14 +145,13 @@ local components = {
     },
 }
 
-local rerender_events = array.filter(
-    array.map(components, function(c)
-        return c.rerender_event
-    end),
-    function(e)
-        return e ~= nil
+---@type string[]
+local rerender_events = array.reduce(components, {}, function(events, c)
+    if c.rerender_event then
+        table.insert(events, c.rerender_event)
     end
-)
+    return events
+end)
 
 local function status_line()
     local winid = tonumber(vim.g.statusline_winid)
