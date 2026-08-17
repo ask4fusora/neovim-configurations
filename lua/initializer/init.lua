@@ -1,7 +1,7 @@
 local M = {}
 
 ---@param module_names string[]
-local function require_modules(module_names)
+function M.require_modules(module_names)
     for _, name in ipairs(module_names) do
         local success, result = pcall(require, name)
         if success then
@@ -16,7 +16,7 @@ end
 function M.initialize(registry)
     require("lua.array").for_each(registry, function(r)
         if not r.event then
-            require_modules(r.module_names)
+            M.require_modules(r.module_names)
             return
         end
 
@@ -24,7 +24,7 @@ function M.initialize(registry)
             pattern = r.pattern,
             once = true,
             callback = function()
-                require_modules(r.module_names)
+                M.require_modules(r.module_names)
             end,
         })
     end)
