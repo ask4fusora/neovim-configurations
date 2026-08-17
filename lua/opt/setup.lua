@@ -15,6 +15,9 @@ vim.o.numberwidth = 5
 vim.o.statuscolumn = " %s%=%{v:relnum ? v:relnum : v:lnum} "
 vim.o.signcolumn = "yes:1"
 vim.o.cursorline = true
+-- NOTE: Setting `guicursor` is critical. Without it, the cursor will be
+-- inherited from the terminal solely.
+vim.o.guicursor = vim.fn.join({ vim.o.guicursor, "a:Cursor" }, ",")
 
 -- Indentation.
 
