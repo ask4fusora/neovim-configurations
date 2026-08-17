@@ -1,5 +1,6 @@
 ---@type fsr.formatter.Formatter[]
-local biome_formatters = {
+local es_formatters = {
+    { language_server = { name = "vtsls" } },
     { language_server = { name = "biome" } },
     { code_action = "source.fixAll.biome" },
 }
@@ -23,8 +24,8 @@ fsr.formatters_by_filetype = {
         },
     },
 
-    typescriptreact = biome_formatters,
-    typescript = biome_formatters,
+    typescriptreact = es_formatters,
+    typescript = es_formatters,
 
     typst = { { language_server = { name = "tinymist" } } },
 
