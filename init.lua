@@ -14,6 +14,7 @@ local registry = {
             "filetype.setup",
             "formatter.setup",
             "autocmd.setup",
+            "user_command.setup",
             "keymap.setup",
         },
     },
