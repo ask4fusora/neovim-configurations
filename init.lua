@@ -18,8 +18,6 @@ require("initializer").initialize({
             "plugin.fff.setup",
             "picker.fff.setup",
             "notification.setup",
-            "formatter.setup",
-            "autocmd.highlight_on_yank.setup",
             "autocmd.open_quick_fix_list_post_grep.setup",
             "user_command.neovim_open_settings.setup",
             "user_command.vim_pack_remove_inactive.setup",
@@ -49,6 +47,13 @@ require("initializer").initialize({
         pattern = "typst",
         module_names = {
             "ftplugin.typst.setup",
+        },
+    },
+    {
+        event = "BufEnter",
+        module_names = {
+            "formatter.setup",
+            "autocmd.highlight_on_yank.setup",
         },
     },
 })
