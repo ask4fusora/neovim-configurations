@@ -24,6 +24,7 @@ require("initializer").initialize({
             "lsp.setup",
             "file_explorer.setup",
             "picker.fff.setup",
+            "notification.setup",
         },
     },
     {
