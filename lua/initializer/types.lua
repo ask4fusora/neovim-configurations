@@ -1,4 +1,4 @@
 ---@class fsr.initializer.Registration
----@field event string
+---@field event string?
 ---@field pattern string|string[]?
 ---@field module_names string[]
