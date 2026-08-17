@@ -27,4 +27,6 @@ fsr.formatters_by_filetype = {
     nu = { { external = { command = "nufmt", arguments = { "--stdin" } } } },
 
     yaml = { { language_server = { name = "yaml-language-server" } } },
+
+    moonbit = { { language_server = { name = "moon-lsp" } } },
 }
