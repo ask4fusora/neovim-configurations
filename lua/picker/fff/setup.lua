@@ -27,7 +27,7 @@ end, {
         rhs = function()
             require("fff").find_files()
         end,
-        desc = "File picker",
+        opts = { desc = "File picker" },
     },
     {
         modes = "n",
@@ -35,7 +35,7 @@ end, {
         rhs = function()
             require("fff").live_grep()
         end,
-        desc = "Live grep",
+        opts = { desc = "Live grep" },
     },
     {
         modes = "v",
@@ -43,6 +43,6 @@ end, {
         rhs = function()
             require("fff").live_grep_under_cursor()
         end,
-        desc = "Live grep under cursor",
+        opts = { desc = "Live grep under cursor" },
     },
 })
