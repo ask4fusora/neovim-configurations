@@ -6,9 +6,11 @@ local api = vim.api
 
 ---@return integer[]
 local function list_buffers()
-    return vim.tbl_filter(function(bufnr)
-        return api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buflisted
-    end, api.nvim_list_bufs())
+    return vim.iter(vim.api.nvim_list_bufs())
+        :filter(function(bufnr)
+            return api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buflisted
+        end)
+        :totable()
 end
 
 ---@param bufnrs integer[]
