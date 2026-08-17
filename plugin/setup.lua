@@ -10,12 +10,10 @@ require("initializer").initialize({
         },
     },
     {
-        event = "SafeState",
+        event = "UIEnter",
         module_names = {
             "opt.setup",
             "statusline.setup",
-            "tree_sitter.mini_ai.setup",
-            "lsp.setup",
             "file_explorer.setup",
             "plugin.fff.setup",
             "picker.fff.setup",
@@ -42,6 +40,8 @@ require("initializer").initialize({
         event = "FileType",
         module_names = {
             "tree_sitter.setup",
+            "tree_sitter.mini_ai.setup",
+            "lsp.setup",
         },
     },
     {
