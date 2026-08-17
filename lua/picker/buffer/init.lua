@@ -1,3 +1,5 @@
+local M = {}
+
 local MAX_BUFFER_PICKER_LINES = 15
 
 local api = vim.api
@@ -212,7 +214,7 @@ local function set_picker_keymaps(
     })
 end
 
-local function pick_buffer()
+function M.open()
     local bufnrs = list_buffers()
     if #bufnrs == 0 then
         return
@@ -235,6 +237,4 @@ local function pick_buffer()
     )
 end
 
-return {
-    pick_buffer = pick_buffer,
-}
+return M

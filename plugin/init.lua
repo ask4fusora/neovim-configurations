@@ -21,6 +21,7 @@ require("initializer").initialize({
         module_names = {
             "lsp.setup",
             "file_explorer.setup",
+            "picker.setup",
         },
     },
     {

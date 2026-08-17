@@ -17,3 +17,7 @@ vim.keymap.set("v", "<C-k><C-f>", function()
         require("formatter").format(formatters, "'<,'>")
     end
 end, { desc = "Format selections" })
+
+vim.keymap.set({ "n", "v" }, "<Leader>b", function()
+    require("picker.buffer").open()
+end, { desc = "Open buffer picker" })

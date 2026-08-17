@@ -13,7 +13,15 @@ function M.set(setup, keymaps)
 
         vim.keymap.set(modes, lhs, function()
             if not is_setup then
-                setup()
+                local success, result = pcall(setup)
+                if not success then
+                    vim.print(
+                        "Failed to set up keymap `" .. lhs .. "`.",
+                        result
+                    )
+                    return
+                end
+
                 is_setup = true
             end
 
