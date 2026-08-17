@@ -17,7 +17,8 @@ vim.o.signcolumn = "yes:1"
 vim.o.cursorline = true
 -- NOTE: Setting `guicursor` is critical. Without it, the cursor will be
 -- inherited from the terminal solely.
-vim.o.guicursor = vim.fn.join({ vim.o.guicursor, "a:Cursor" }, ",")
+vim.o.guicursor = table.concat({ vim.o.guicursor, "a:Cursor" }, ",")
+vim.o.fillchars = table.concat({ "eob: " }, ",")
 
 -- Indentation.
 
@@ -32,7 +33,7 @@ vim.o.isfname = table.concat({ vim.o.isfname, "(", ")" }, ",")
 -- List chars.
 
 vim.o.list = true
-vim.o.listchars = vim.fn.join({
+vim.o.listchars = table.concat({
     "eol:",
     "tab:→ ",
     "trail:•",
