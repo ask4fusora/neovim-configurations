@@ -1,5 +1,3 @@
-_G.Formatter = {}
-
 ---@type FormatterKind[]
 local biome_formatters = {
     { language_server = { name = "biome" } },
@@ -7,7 +5,7 @@ local biome_formatters = {
 }
 
 ---@type table<string, FormatterKind[]?>
-_G.Formatter.formatters_by_filetype = {
+fsr.formatters_by_filetype = {
     lua = {
         {
             external = {

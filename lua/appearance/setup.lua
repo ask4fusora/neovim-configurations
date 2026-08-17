@@ -26,7 +26,7 @@ vim.cmd.colorscheme("jb")
 update_cursor_hl_group()
 
 local color_scheme_group = vim.api.nvim_create_augroup(
-    "fsr.CursorHlGroupUpdateOnColorScheme",
+    "fsr.UpdateCursorHlGroupOnColorScheme",
     { clear = true }
 )
 vim.api.nvim_create_autocmd(
@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd(
 )
 
 local option_set_group = vim.api.nvim_create_augroup(
-    "fsr.CursorHlGroupUpdateOnOptionSet",
+    "fsr.UpdateCursorHlGroupOnOptionSet",
     { clear = true }
 )
 vim.api.nvim_create_autocmd("OptionSet", {

@@ -1,6 +1,8 @@
 vim.loader.enable()
 require("vim._core.ui2").enable()
 
+_G.fsr = {}
+
 ---@type fsr.initializer.Registration[]
 local registry = {
     {
