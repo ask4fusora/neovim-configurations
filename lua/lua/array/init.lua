@@ -70,10 +70,20 @@ local function shift_index(size, current_index, shift)
     return (current_index + shift - 1) % size + 1
 end
 
+---@generic T
+---@param array T[]
+---@param callback fun(item: T, index: integer)
+local function for_each(array, callback)
+    for i, v in ipairs(array) do
+        callback(v, i)
+    end
+end
+
 return {
     filter = filter,
     find_pos = find_pos,
     map = map,
     reduce = reduce,
     shift_index = shift_index,
+    for_each = for_each,
 }
