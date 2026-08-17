@@ -1,57 +1,22 @@
----@class StatusLineContext
----@field winid integer
----@field bufnr integer
-
----@class StatusLineComponent
----@field rerender_event string|nil
----@field render fun(ctx: StatusLineContext): string
-
 local array = require("lua.array")
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-    group = vim.api.nvim_create_augroup("StlColorScheme", { clear = true }),
-    callback = function()
-        vim.api.nvim_set_hl(0, "StlFilenameModified", { bold = true })
+vim.api.nvim_set_hl(0, "fsr.StlFilenameModified", { bold = true })
+vim.api.nvim_set_hl(
+    0,
+    "fsr.StlVimMode",
+    vim.tbl_extend(
+        "force",
+        vim.api.nvim_get_hl(0, { name = "Title", link = false }),
+        {
+            bold = true,
+            italic = false,
+            reverse = true,
+        }
+    )
+)
 
-        local title_hl_group =
-            vim.api.nvim_get_hl(0, { name = "Title", link = false })
-        vim.api.nvim_set_hl(
-            0,
-            "StlVimMode",
-            vim.tbl_extend("force", title_hl_group, {
-                bold = true,
-                italic = false,
-                reverse = true,
-            })
-        )
-    end,
-})
-
-local mode_name_by_key_code = {
-    n = "NORMAL",
-    no = "OPERATOR-PENDING",
-    nt = "TERMINAL NORMAL",
-
-    v = "VISUAL",
-    V = "VISUAL LINE",
-    [vim.keycode("<C-V>")] = "VISUAL BLOCK",
-
-    s = "SELECT",
-    S = "SELECT LINE",
-    [vim.keycode("<C-S>")] = "SELECT BLOCK",
-
-    i = "INSERT",
-    R = "REPLACE",
-    Rv = "VIRTUAL REPLACE",
-
-    c = "COMMAND",
-    r = "PROMPT",
-    ["!"] = "SHELL",
-    t = "TERMINAL",
-}
-
----@type StatusLineComponent[]
-local components = {
+---@type fsr.statusline.Component[]
+return {
     {
         render = function(ctx)
             local file_path = vim.api.nvim_buf_get_name(ctx.bufnr)
@@ -70,7 +35,7 @@ local components = {
             end
 
             local hl_group = vim.bo[ctx.bufnr].modified
-                    and "%$StlFilenameModified$"
+                    and "%$fsr.StlFilenameModified$"
                 or ""
 
             return prefix .. hl_group .. "%t%*"
@@ -120,12 +85,35 @@ local components = {
     },
     {
         render = function()
+            local mode_name_by_key_code = {
+                n = "NORMAL",
+                no = "OPERATOR-PENDING",
+                nt = "TERMINAL NORMAL",
+
+                v = "VISUAL",
+                V = "VISUAL LINE",
+                [vim.keycode("<C-V>")] = "VISUAL BLOCK",
+
+                s = "SELECT",
+                S = "SELECT LINE",
+                [vim.keycode("<C-S>")] = "SELECT BLOCK",
+
+                i = "INSERT",
+                R = "REPLACE",
+                Rv = "VIRTUAL REPLACE",
+
+                c = "COMMAND",
+                r = "PROMPT",
+                ["!"] = "SHELL",
+                t = "TERMINAL",
+            }
+
             local mode_key_code = vim.api.nvim_get_mode().mode
             local mode_name = mode_name_by_key_code[mode_key_code:sub(1, 2)]
                 or mode_name_by_key_code[mode_key_code:sub(1, 1)]
                 or mode_key_code
 
-            return ("%%$StlVimMode$ %s %%*"):format(mode_name)
+            return ("%%$fsr.StlVimMode$ %s %%*"):format(mode_name)
         end,
     },
     {
@@ -144,40 +132,3 @@ local components = {
         end,
     },
 }
-
----@type string[]
-local rerender_events = array.reduce(components, {}, function(events, c)
-    if c.rerender_event then
-        table.insert(events, c.rerender_event)
-    end
-    return events
-end)
-
-local function status_line()
-    local winid = tonumber(vim.g.statusline_winid)
-        or vim.api.nvim_get_current_win()
-
-    ---@type StatusLineContext
-    local ctx = {
-        winid = winid,
-        bufnr = vim.api.nvim_win_get_buf(winid),
-    }
-
-    return table.concat(
-        array.map(components, function(c)
-            return c.render(ctx)
-        end),
-        " "
-    )
-end
-
-_G.status_line = status_line
-
-vim.api.nvim_create_autocmd(rerender_events, {
-    group = vim.api.nvim_create_augroup("RerenderStatusLine", { clear = true }),
-    callback = function()
-        vim.cmd.redrawstatus()
-    end,
-})
-
-vim.o.statusline = "%!v:lua.status_line()"

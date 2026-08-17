@@ -10,6 +10,7 @@ local registry = {
             "opt.setup",
             "plugin.setup",
             "appearance.setup",
+            "statusline.setup",
             "filetype.setup",
             "formatter.setup",
             "autocmd.setup",
