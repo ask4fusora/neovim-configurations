@@ -10,6 +10,7 @@ local registry = {
             "appearance.setup",
             "filetype.setup",
             "autocmd.setup",
+            "formatter.setup",
         },
     },
 }

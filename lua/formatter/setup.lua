@@ -30,5 +30,3 @@ _G.Formatter.formatters_by_filetype = {
 
     yaml = { { language_server = { name = "yaml-language-server" } } },
 }
-
-return _G.Formatter
