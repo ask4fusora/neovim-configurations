@@ -18,6 +18,12 @@ local registry = {
             "keymap.setup",
         },
     },
+    {
+        event = "SafeState",
+        module_names = {
+            "lsp.setup",
+        },
+    },
 }
 
 require("initializer").initialize(registry)
