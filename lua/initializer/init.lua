@@ -1,20 +1,22 @@
 local M = {}
 
+local array = require("lua.array")
+
 ---@param module_names string[]
 function M.require_modules(module_names)
-    for _, name in ipairs(module_names) do
+    array.for_each(module_names, function(name)
         local success, result = pcall(require, name)
         if success then
             return
         end
 
         vim.print("Failed to initialize `" .. name .. "`.", result)
-    end
+    end)
 end
 
 ---@param registry fsr.initializer.Registration[]
 function M.initialize(registry)
-    require("lua.array").for_each(registry, function(r)
+    array.for_each(registry, function(r)
         if not r.event then
             M.require_modules(r.module_names)
             return
