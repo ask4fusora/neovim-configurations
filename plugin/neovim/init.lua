@@ -1,5 +1,3 @@
-require("neovim.formatter.global_formatter_registry")
-
 ---@param path string
 ---@param opts vim.ui.open.Opts?
 local function nushell_ui_open(path, opts)
