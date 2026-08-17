@@ -9,6 +9,7 @@ local registry = {
             "plugin.setup",
             "appearance.setup",
             "filetype.setup",
+            "autocmd.setup",
         },
     },
 }
