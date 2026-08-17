@@ -1,6 +1,8 @@
+local M = {}
+
 ---@param path string
 ---@param opts vim.ui.open.Opts?
-local function nushell_ui_open(path, opts)
+function M.nushell_ui_open(path, opts)
     local is_uri = path:match("%w+:")
     if not is_uri then
         path = vim.fs.normalize(path)
@@ -24,4 +26,4 @@ local function nushell_ui_open(path, opts)
     return vim.system(cmd, job_opt)
 end
 
-vim.ui.open = nushell_ui_open
+return M

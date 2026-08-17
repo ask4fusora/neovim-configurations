@@ -1,6 +1,3 @@
-vim.loader.enable()
-require("vim._core.ui2").enable()
-
 _G.fsr = {}
 
 require("initializer").initialize({
@@ -9,6 +6,7 @@ require("initializer").initialize({
             "opt.setup",
             "plugin.setup",
             "appearance.setup",
+            "tweak.setup",
             "statusline.setup",
             "filetype.setup",
             "formatter.setup",
