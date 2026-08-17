@@ -9,8 +9,9 @@ local registry = {
             "plugin.setup",
             "appearance.setup",
             "filetype.setup",
-            "autocmd.setup",
             "formatter.setup",
+            "autocmd.setup",
+            "keymap.setup",
         },
     },
 }
