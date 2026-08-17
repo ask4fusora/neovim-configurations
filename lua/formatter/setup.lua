@@ -4,6 +4,10 @@ local biome_formatters = {
     { code_action = "source.fixAll.biome" },
 }
 
+local json_formatters = {
+    { language_server = { name = "json-language-server" } },
+}
+
 ---@type table<string, fsr.formatter.Formatter[]?>
 fsr.formatters_by_filetype = {
     lua = {
@@ -29,4 +33,7 @@ fsr.formatters_by_filetype = {
     yaml = { { language_server = { name = "yaml-language-server" } } },
 
     moonbit = { { language_server = { name = "moon-lsp" } } },
+
+    json = json_formatters,
+    jsonc = json_formatters,
 }
