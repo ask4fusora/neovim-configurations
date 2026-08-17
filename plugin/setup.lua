@@ -26,6 +26,7 @@ require("initializer").initialize({
             "user_command.neovim_open_settings.setup",
             "user_command.vim_pack_remove_inactive.setup",
             "keymap.setup",
+            "which_key.setup",
         },
     },
     {
