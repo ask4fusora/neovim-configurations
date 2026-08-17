@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 vim.keymap.set("ca", "grep", "silent grep!")
 
 vim.keymap.set({ "n", "v" }, "<C-s>", function()

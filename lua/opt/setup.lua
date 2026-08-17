@@ -1,7 +1,3 @@
--- Mapleader.
-
-vim.g.mapleader = " "
-
 -- Winborder.
 
 vim.o.winborder = "single"
