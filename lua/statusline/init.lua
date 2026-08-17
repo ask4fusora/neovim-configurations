@@ -23,7 +23,7 @@ function M.render()
 
             return stl_components
         end),
-        " "
+        "  "
     )
 end
 
