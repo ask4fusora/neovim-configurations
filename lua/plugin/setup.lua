@@ -29,11 +29,3 @@ vim.pack.add({
     { src = "https://github.com/justinmk/vim-sneak" },
     { src = "https://github.com/nvim-mini/mini.ai", version = "stable" },
 })
-
-require("initializer").initialize({
-    {
-        module_names = {
-            "build.fff",
-        },
-    },
-}, "plugin")

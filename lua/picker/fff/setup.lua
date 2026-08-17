@@ -1,23 +1,23 @@
 local keymap = require("lazy.keymap")
 
+vim.g.fff = {
+    prompt = "  ",
+    layout = {
+        prompt_position = "top",
+    },
+    follow_symlinks = true,
+    debug = {
+        enabled = false,
+        show_scores = false,
+    },
+}
+
 keymap.set(function()
     local success, fff = pcall(require, "fff")
     if not success then
         vim.print("`fff` is either not installed or not available.", fff)
         return error(fff, 0)
     end
-
-    fff.setup({
-        prompt = "  ",
-        layout = {
-            prompt_position = "top",
-        },
-        follow_symlinks = true,
-        debug = {
-            enabled = false,
-            show_scores = false,
-        },
-    })
 
     require("neovim.g").insert_to_list("nominicompletion_filetypes", "fff_input")
 end, {
