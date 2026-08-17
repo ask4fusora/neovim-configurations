@@ -9,6 +9,7 @@ require("initializer").initialize({
             "tweak.setup",
             "statusline.setup",
             "filetype.setup",
+            "ftplugin.setup",
             "formatter.setup",
             "autocmd.setup",
             "user_command.setup",
