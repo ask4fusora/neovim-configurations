@@ -17,7 +17,7 @@ local function configure_cmd(command, arguments, better_typescript_error)
         end
 
         if better_typescript_error then
-            require("lsp.ecosystem.nodejs.better_typescript_error").init()
+            require("lsp.adapter.nodejs.better_typescript_error").init()
         end
 
         return vim.lsp.rpc.start(

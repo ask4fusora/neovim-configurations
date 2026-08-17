@@ -25,7 +25,7 @@
 
 ---@type vim.lsp.Config
 return {
-    cmd = require("lsp.ecosystem.nodejs.cmd").configure_cmd("vtsls"),
+    cmd = require("lsp.adapter.nodejs.cmd").configure_cmd("vtsls"),
     init_options = {
         hostInfo = "neovim",
     },
