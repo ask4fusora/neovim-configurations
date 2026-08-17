@@ -21,3 +21,17 @@ end, { desc = "Format selections" })
 vim.keymap.set({ "n", "v" }, "<Leader>b", function()
     require("picker.buffer").open()
 end, { desc = "Open buffer picker" })
+
+vim.keymap.set(
+    "",
+    "<leader>s",
+    "<Plug>Sneak_s",
+    { remap = true, desc = "Sneak forward" }
+)
+
+vim.keymap.set(
+    "",
+    "<leader>S",
+    "<Plug>Sneak_S",
+    { remap = true, desc = "Sneak backward" }
+)
