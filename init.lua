@@ -5,6 +5,7 @@ require("initializer").initialize({
         module_names = {
             "tweak.setup",
             "plugin.setup",
+            "keymap.setup",
             "appearance.setup",
             "filetype.setup",
         },
@@ -21,7 +22,6 @@ require("initializer").initialize({
             "autocmd.open_quick_fix_list_post_grep.setup",
             "user_command.neovim_open_settings.setup",
             "user_command.vim_pack_remove_inactive.setup",
-            "keymap.setup",
             "which_key.setup",
         },
     },
