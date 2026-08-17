@@ -14,14 +14,14 @@ vim.lsp.enable({
 require("initializer").initialize({
     {
         module_names = {
-            "lsp.document_highlight.setup",
-            "lsp.keymap.setup",
+            "document_highlight.setup",
+            "keymap.setup",
         },
     },
     {
         event = "LspAttach",
         module_names = {
-            "lsp.diagnostic.setup",
+            "diagnostic.setup",
         },
-    }
-})
+    },
+}, "lsp")

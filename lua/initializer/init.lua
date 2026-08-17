@@ -15,7 +15,17 @@ local function require_modules(module_names)
 end
 
 ---@param registry fsr.initializer.Registration[]
-function M.initialize(registry)
+---@param namespace string?
+function M.initialize(registry, namespace)
+    if namespace then
+        array.for_each(registry, function(r)
+            r.module_names = array.reduce(r.module_names, {}, function(prefixed_module_names, name)
+                table.insert(prefixed_module_names, namespace .. "." .. name)
+                return prefixed_module_names
+            end)
+        end)
+    end
+
     array.for_each(registry, function(r)
         if not r.event then
             require_modules(r.module_names)

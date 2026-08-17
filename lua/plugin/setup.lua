@@ -30,4 +30,10 @@ vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.ai", version = "stable" },
 })
 
-require("initializer").require_modules({ "plugin.build.fff" })
+require("initializer").initialize({
+    {
+        module_names = {
+            "build.fff",
+        },
+    },
+}, "plugin")
