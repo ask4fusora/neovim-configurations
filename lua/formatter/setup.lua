@@ -1,10 +1,10 @@
----@type FormatterKind[]
+---@type fsr.formatter.Formatter[]
 local biome_formatters = {
     { language_server = { name = "biome" } },
     { code_action = "source.fixAll.biome" },
 }
 
----@type table<string, FormatterKind[]?>
+---@type table<string, fsr.formatter.Formatter[]?>
 fsr.formatters_by_filetype = {
     lua = {
         {
