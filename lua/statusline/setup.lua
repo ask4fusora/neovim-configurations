@@ -1,4 +1,4 @@
-vim.o.statusline = "%!v:lua.require'statusline'.render()"
+vim.o.statusline = "%!v:lua.require('statusline').render()"
 
 local array = require("lua.array")
 local components = require("statusline.components")
