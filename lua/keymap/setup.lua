@@ -2,6 +2,8 @@ vim.g.mapleader = " "
 
 vim.keymap.set("ca", "grep", "silent grep!")
 
+vim.keymap.set("ca", "ls", "PickBuffer")
+
 vim.keymap.set({ "n", "v" }, "<C-s>", function()
     vim.cmd("silent w")
 end)
@@ -19,10 +21,6 @@ vim.keymap.set("v", "<C-k><C-f>", function()
         require("formatter").format(formatters, "'<,'>")
     end
 end, { desc = "Format selections" })
-
-vim.keymap.set({ "n", "v" }, "<Leader>b", function()
-    require("picker.buffer").open()
-end, { desc = "Open buffer picker" })
 
 vim.keymap.set(
     "",

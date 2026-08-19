@@ -22,6 +22,7 @@ require("initializer").initialize({
             "autocmd.open_quick_fix_list_post_grep.setup",
             "user_command.neovim_open_settings.setup",
             "user_command.vim_pack_remove_inactive.setup",
+            "user_command.pick_buffer.setup",
             "which_key.setup",
         },
     },
