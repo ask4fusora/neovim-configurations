@@ -9,4 +9,5 @@ vim.lsp.enable({
     "moon-lsp",
     "nu",
     "yaml-language-server",
+    "tombi",
 })
