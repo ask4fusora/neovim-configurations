@@ -3,6 +3,11 @@ local M = {}
 ---@param path string
 ---@param opts vim.ui.open.Opts?
 function M.nushell_ui_open(path, opts)
+    if vim.fn.executable("nu") == 0 then
+        vim.notify("`nu` is not an executable.", vim.log.levels.ERROR)
+        return
+    end
+
     local is_uri = path:match("%w+:")
     if not is_uri then
         path = vim.fs.normalize(path)
