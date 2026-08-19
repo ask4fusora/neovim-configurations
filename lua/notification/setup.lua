@@ -1,6 +1,6 @@
 local success, mn = pcall(require, "mini.notify")
 if not success then
-    vim.print("`mini.notify` is either not installed or not available.", mn)
+    vim.notify("`mini.notify` is either not installed or not available.", vim.log.levels.ERROR)
     return
 end
 

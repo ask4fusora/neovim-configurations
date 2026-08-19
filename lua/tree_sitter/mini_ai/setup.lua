@@ -1,6 +1,6 @@
 local success, mini_ai = pcall(require, "mini.ai")
 if not success then
-    vim.print("`mini.ai` is either not installed or not available.", mini_ai)
+    vim.notify("`mini.ai` is either not installed or not available.", vim.log.levels.ERROR)
     return
 end
 

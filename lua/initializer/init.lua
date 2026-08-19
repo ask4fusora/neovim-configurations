@@ -10,7 +10,7 @@ local function require_modules(module_names)
             return
         end
 
-        vim.print("Failed to initialize `" .. name .. "`.", result)
+        vim.notify("Failed to initialize `" .. name .. "`.", vim.log.levels.ERROR)
     end)
 end
 

@@ -1,6 +1,6 @@
 local success, tp = pcall(require, "typst-preview")
 if not success then
-    vim.print("`typst-preview` is either not installed or not available.", tp)
+    vim.notify("`typst-preview` is either not installed or not available.", vim.log.levels.ERROR)
     return
 end
 

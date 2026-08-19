@@ -1,6 +1,6 @@
 local success, mc = pcall(require, "mini.completion")
 if not success then
-    vim.print("`mini.completion` is either not installed or not available.", mc)
+    vim.notify("`mini.completion` is either not installed or not available.", vim.log.levels.ERROR)
     return
 end
 

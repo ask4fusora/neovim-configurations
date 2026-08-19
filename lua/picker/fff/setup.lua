@@ -15,7 +15,7 @@ vim.g.fff = {
 keymap.set(function()
     local success, fff = pcall(require, "fff")
     if not success then
-        vim.print("`fff` is either not installed or not available.", fff)
+        vim.notify("`fff` is either not installed or not available.", vim.log.levels.ERROR)
         return error(fff, 0)
     end
 

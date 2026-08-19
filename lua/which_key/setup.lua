@@ -1,6 +1,6 @@
 local success, miniclue = pcall(require, "mini.clue")
 if not success then
-    vim.print("`mini.clue` is either not installed or not available.", miniclue)
+    vim.notify("`mini.clue` is either not installed or not available.", vim.log.levels.ERROR)
     return
 end
 

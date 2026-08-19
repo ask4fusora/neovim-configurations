@@ -7,7 +7,7 @@ end
 
 local success, jb = pcall(require, "jb")
 if not success then
-    vim.print("`jb` is either not installed or not available.", jb)
+    vim.notify("`jb` is either not installed or not available.", vim.log.levels.ERROR)
     return
 end
 

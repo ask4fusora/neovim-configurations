@@ -1,6 +1,6 @@
 local success, arborist = pcall(require, "arborist")
 if not success then
-    vim.print("`arborist` is either not installed or not available.", arborist)
+    vim.notify("`arborist` is either not installed or not available.", vim.log.levels.ERROR)
     return
 end
 

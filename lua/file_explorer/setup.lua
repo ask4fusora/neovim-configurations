@@ -3,7 +3,7 @@ local keymap = require("lazy.keymap")
 keymap.set(function()
     local success, mf = pcall(require, "mini.files")
     if not success then
-        vim.print("`mini.files` is either not installed or not available.", mf)
+        vim.notify("`mini.files` is either not installed or not available.", vim.log.levels.ERROR)
         return
     end
 
