@@ -1,9 +1,22 @@
----@param formatters fsr.formatter.Formatter[]
+local M = {}
+
+---@return fsr.formatter.Formatter.LanguageServer[]
+local function default_formatters()
+    return vim.iter(vim.lsp.get_clients({ bufnr = 0 }))
+        :map(function(client)
+            ---@cast client vim.lsp.Client
+            ---@type fsr.formatter.Formatter.LanguageServer
+            return { language_server = { name = client.name } }
+        end)
+        :totable()
+end
+
+---@param formatters fsr.formatter.Formatter[]?
 ---@param range string? Default to `%` (whole file).
 ------
 ---Format document range.
-local function format(formatters, range)
-    formatters = formatters or {}
+function M.format(formatters, range)
+    formatters = formatters or default_formatters()
 
     local buffer_path = vim.api.nvim_buf_get_name(0)
 
@@ -12,7 +25,7 @@ local function format(formatters, range)
             vim.lsp.buf.format({
                 filter = function(client)
                     return client.name == formatter.language_server.name
-                end
+                end,
             })
         elseif formatter.external then
             local command = { formatter.external.command }
@@ -24,9 +37,11 @@ local function format(formatters, range)
 
             local view = vim.fn.winsaveview()
 
-            vim.cmd(("silent keepjumps %s!%s"):format(
-                range or "%",
-                table.concat(command, " "))
+            vim.cmd(
+                ("silent keepjumps %s!%s"):format(
+                    range or "%",
+                    table.concat(command, " ")
+                )
             )
 
             vim.fn.winrestview(view)
@@ -34,13 +49,11 @@ local function format(formatters, range)
             require("lsp.code_action").code_action_sync({
                 apply = true,
                 context = {
-                    only = { formatter.code_action }
-                }
+                    only = { formatter.code_action },
+                },
             })
         end
     end
 end
 
-return {
-    format = format
-}
+return M

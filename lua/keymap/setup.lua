@@ -10,16 +10,12 @@ end)
 
 vim.keymap.set("n", "<M-F>", function()
     local formatters = fsr.formatters_by_filetype[vim.bo.filetype]
-    if formatters and next(formatters) then
-        require("formatter").format(formatters)
-    end
+    require("formatter").format(formatters)
 end, { desc = "Format document" })
 
 vim.keymap.set("v", "<C-k><C-f>", function()
     local formatters = fsr.formatters_by_filetype[vim.bo.filetype]
-    if formatters and next(formatters) then
-        require("formatter").format(formatters, "'<,'>")
-    end
+    require("formatter").format(formatters, "'<,'>")
 end, { desc = "Format selections" })
 
 vim.keymap.set(
