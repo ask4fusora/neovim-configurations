@@ -9,12 +9,4 @@ vim.g.clipboard = {
         ["+"] = osc52_clipboard.copy("+"),
         ["*"] = osc52_clipboard.copy("*"),
     },
-    paste = {
-        ["+"] = function()
-            return {}
-        end,
-        ["*"] = function()
-            return {}
-        end,
-    },
 }
