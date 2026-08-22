@@ -15,20 +15,19 @@ function M.require_modules(args, module_names)
             return
         end
 
-        if not type(module.exec) == "function" then
-            return
-        end
-        ---@cast module fsr.initializer.Module
+        if type(module) == "table" and type(module.exec) == "function" then
+            ---@cast module fsr.initializer.Module
 
-        assert(args ~= nil, ("`args` is missing for `%s`."):format(name))
-        ---@cast args vim.api.keyset.create_autocmd.callback_args
+            assert(args ~= nil, ("`args` is missing for `%s`."):format(name))
+            ---@cast args vim.api.keyset.create_autocmd.callback_args
 
-        local exec_success = pcall(module.exec, args)
-        if not exec_success then
-            vim.notify(
-                "Failed to execute `" .. name .. "`.",
-                vim.log.levels.ERROR
-            )
+            local exec_success = pcall(module.exec, args)
+            if not exec_success then
+                vim.notify(
+                    "Failed to execute `" .. name .. "`.",
+                    vim.log.levels.ERROR
+                )
+            end
         end
     end)
 end
@@ -38,7 +37,7 @@ function M.register(registry)
     array.for_each(registry, function(r)
         vim.api.nvim_create_autocmd(r.event, {
             pattern = r.pattern,
-            once = r.once or true,
+            once = r.once == nil or r.once,
             callback = function(args)
                 M.require_modules(args, r.module_names)
             end,
