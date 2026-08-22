@@ -1,6 +1,5 @@
 local M = {}
 
-local array = require("lua.array")
 local components = require("statusline.components")
 
 function M.render()
@@ -14,17 +13,14 @@ function M.render()
         bufnr = vim.api.nvim_win_get_buf(winid),
     }
 
-    return table.concat(
-        array.reduce(components, {}, function(stl_components, c)
-            local result = c.render(ctx)
-            if result ~= "" then
-                table.insert(stl_components, result)
-            end
-
-            return stl_components
-        end),
-        "  "
-    )
+    return vim.iter(components)
+        :map(function(c)
+            return c.render(ctx)
+        end)
+        :filter(function(res)
+            return res ~= ""
+        end)
+        :join("  ")
 end
 
 return M

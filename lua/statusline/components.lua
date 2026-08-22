@@ -1,5 +1,3 @@
-local array = require("lua.array")
-
 vim.api.nvim_set_hl(0, "fsr.StlFilenameModified", { bold = true })
 vim.api.nvim_set_hl(
     0,
@@ -59,8 +57,10 @@ return {
                 "DiagnosticHint",
             }
 
-            return table.concat(
-                array.map(diagnostic_counts, function(count, level)
+            return vim.iter(diagnostic_counts)
+                :map(function(level, count)
+                    ---@cast level integer
+                    ---@cast count integer
                     return "%$"
                         .. hl_groups[level]
                         .. "$"
@@ -68,9 +68,8 @@ return {
                         .. " "
                         .. tostring(count)
                         .. "%*"
-                end),
-                " "
-            )
+                end)
+                :join(" ")
         end,
     },
     {

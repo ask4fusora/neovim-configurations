@@ -1,10 +1,11 @@
 local success, mc = pcall(require, "mini.completion")
 if not success then
-    vim.notify("`mini.completion` is either not installed or not available.", vim.log.levels.ERROR)
+    vim.notify(
+        "`mini.completion` is either not installed or not available.",
+        vim.log.levels.ERROR
+    )
     return
 end
-
-local array = require("lua.array")
 
 mc.setup({
     -- NOTE: Mimicking `disable_completion_on_type`.
@@ -17,16 +18,17 @@ vim.o.omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
 vim.g.nominicompletion_filetypes = {} ---@type string[]
 
 vim.api.nvim_create_autocmd("FileType", {
-    callback = function()
-        local matched_filetype_pos = array.find_pos(
-            vim.g.nominicompletion_filetypes or {},
-            function(filetype)
-                return filetype == vim.bo.filetype
-            end
-        )
+    callback = function(args)
+        ---@type string|nil
+        local matched_filetype_pos = vim.iter(
+            vim.g.nominicompletion_filetypes or {} ---@type string[]
+        ):find(function(filetype)
+            ---@cast filetype string
+            return filetype == vim.bo[args.buf].filetype
+        end)
 
-        if matched_filetype_pos ~= 0 then
-            vim.b.minicompletion_disable = true
+        if matched_filetype_pos ~= nil then
+            vim.b[args.buf].minicompletion_disable = true
         end
     end,
 })
