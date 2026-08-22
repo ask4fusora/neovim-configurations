@@ -6,6 +6,7 @@ vim.pack.add({
         src = "https://github.com/chomosuke/typst-preview.nvim",
         version = vim.version.range("1.*"),
     },
+    { src = "https://github.com/nvim-mini/mini.icons", version = "stable" },
     {
         src = "https://github.com/nvim-mini/mini.notify",
         version = "stable",
