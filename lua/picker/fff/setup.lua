@@ -6,6 +6,7 @@ vim.g.fff = {
         prompt_position = "top",
     },
     follow_symlinks = true,
+    lazy_sync = true,
     debug = {
         enabled = false,
         show_scores = false,
@@ -15,11 +16,17 @@ vim.g.fff = {
 keymap.set(function()
     local success, fff = pcall(require, "fff")
     if not success then
-        vim.notify("`fff` is either not installed or not available.", vim.log.levels.ERROR)
+        vim.notify(
+            "`fff` is either not installed or not available.",
+            vim.log.levels.ERROR
+        )
         return error(fff, 0)
     end
 
-    require("neovim.g").insert_to_list("nominicompletion_filetypes", "fff_input")
+    require("neovim.g").insert_to_list(
+        "nominicompletion_filetypes",
+        "fff_input"
+    )
 end, {
     {
         modes = "n",
