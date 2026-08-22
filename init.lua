@@ -25,6 +25,7 @@ initializer.register({
         event = "UIEnter",
         module_names = {
             "opt.setup",
+            "ssh.setup",
             "appearance.icon.setup",
             "statusline.setup",
             "file_explorer.setup",
