@@ -1,6 +1,9 @@
 local success, arborist = pcall(require, "arborist")
 if not success then
-    vim.notify("`arborist` is either not installed or not available.", vim.log.levels.ERROR)
+    vim.notify(
+        "`arborist` is either not installed or not available.",
+        vim.log.levels.ERROR
+    )
     return
 end
 
@@ -32,6 +35,8 @@ arborist.setup({
         "toml",
         "json",
         "nu",
+        "powershell",
+        "bash",
     },
     overrides = {
         moonbit = {
