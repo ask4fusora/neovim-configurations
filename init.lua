@@ -1,23 +1,32 @@
 _G.fsr = {}
 
-require("initializer").initialize({
+local initializer = require("initializer")
+
+initializer.register({
     {
+        event = "PackChanged",
+        once = false,
         module_names = {
-            "tweak.setup",
             "plugin.fff.setup",
-            "plugin.setup",
-            "keymap.setup",
-            "appearance.setup",
-            "filetype.setup",
         },
     },
+})
+
+initializer.require_modules(nil, {
+    "tweak.setup",
+    "plugin.setup",
+    "keymap.setup",
+    "appearance.setup",
+    "filetype.setup",
+})
+
+initializer.register({
     {
         event = "UIEnter",
         module_names = {
             "opt.setup",
             "statusline.setup",
             "file_explorer.setup",
-            "plugin.fff.setup",
             "picker.fff.setup",
             "notification.setup",
             "autocmd.open_quick_fix_list_post_grep.setup",
