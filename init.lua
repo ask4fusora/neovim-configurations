@@ -4,6 +4,7 @@ require("initializer").initialize({
     {
         module_names = {
             "tweak.setup",
+            "plugin.fff.setup",
             "plugin.setup",
             "keymap.setup",
             "appearance.setup",
