@@ -1,6 +1,7 @@
 local TIMEOUT_MS = 100
 
-local group = vim.api.nvim_create_augroup("fsr.HighlightOnYank", { clear = true })
+local group =
+    vim.api.nvim_create_augroup("fsr.autocmd.HighlightOnYank", { clear = true })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = group,

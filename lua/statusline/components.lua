@@ -1,7 +1,7 @@
-vim.api.nvim_set_hl(0, "fsr.StlFilenameModified", { bold = true })
+vim.api.nvim_set_hl(0, "fsr.statusline.StlFilenameModified", { bold = true })
 vim.api.nvim_set_hl(
     0,
-    "fsr.StlVimMode",
+    "fsr.statusline.StlVimMode",
     vim.tbl_extend(
         "force",
         vim.api.nvim_get_hl(0, { name = "Title", link = false }),
@@ -33,7 +33,7 @@ return {
             end
 
             local hl_group = vim.bo[ctx.bufnr].modified
-                    and "%$fsr.StlFilenameModified$"
+                    and "%$fsr.statusline.StlFilenameModified$"
                 or ""
 
             return prefix .. hl_group .. "%t%*"
@@ -112,7 +112,7 @@ return {
                 or mode_name_by_key_code[mode_key_code:sub(1, 1)]
                 or mode_key_code
 
-            return ("%%$fsr.StlVimMode$ %s %%*"):format(mode_name)
+            return ("%%$fsr.statusline.StlVimMode$ %s %%*"):format(mode_name)
         end,
     },
     {

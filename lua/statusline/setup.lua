@@ -14,7 +14,7 @@ local rerender_events = vim.iter(components)
 
 vim.api.nvim_create_autocmd(rerender_events, {
     group = vim.api.nvim_create_augroup(
-        "fsr.RerenderStatusLine",
+        "fsr.statusline.RerenderStatusLine",
         { clear = true }
     ),
     callback = function()
